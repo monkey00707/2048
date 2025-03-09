@@ -1,0 +1,123 @@
+@for $row from 0 through 3 {
+  @for $column from 0 through 3 {
+    .position_#{$row}_#{$column}:not(.isMoving) {
+      top: 110 * $row + 5px;
+      left: 110 * $column + 5px;
+    }
+  }
+}
+
+@for $fromRow from 0 through 3 {
+  @for $toRow from 0 through 3 {
+    $name: row_from_#{$fromRow}_to_#{$toRow};
+
+    @if $fromRow == $toRow {
+      .#{$name} {
+        top: 110 * $toRow + 5px;
+      }
+    } @else {
+      .#{$name} {
+        animation-duration: 0.2s;
+        animation-name: $name;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes #{$name} {
+        from {
+          top: 110 * $fromRow + 5px;
+        }
+        to {
+          top: 110 * $toRow + 5px;
+        }
+      }
+    }
+  }
+}
+
+@for $fromColumn from 0 through 3 {
+  @for $toColumn from 0 through 3 {
+    $name: column_from_#{$fromColumn}_to_#{$toColumn};
+
+    @if $fromColumn == $toColumn {
+      .#{$name} {
+        left: 110 * $toColumn + 5px;
+      }
+    } @else {
+      .#{$name} {
+        animation-duration: 0.2s;
+        animation-name: $name;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes #{$name} {
+        from {
+          left: 110 * $fromColumn + 5px;
+        }
+        to {
+          left: 110 * $toColumn + 5px;
+        }
+      }
+    }
+  }
+}
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 20px;
+  background: #3d2963;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: white;
+  font-family: "Arial", sans-serif;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #fff;
+    color: #333;
+  }
+
+  input:focus {
+    outline: none;
+    border: 2px solid #d3386a;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #d3386a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-top: 10px;
+  }
+
+  button:hover {
+    background-color: #b12b56;
+  }
+
+  p {
+    margin-top: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ff85a2;
+  }
+
+  p:hover {
+    text-decoration: underline;
+  }
+}
