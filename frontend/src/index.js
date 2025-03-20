@@ -24,7 +24,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={isAuthenticated ? <><BoardView /><Logout /></> : <Navigate to="/login" />} />
+        <Route path="/" element={isAuthenticated ? <><BoardView /><Logout /></> : <Navigate to="/" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
