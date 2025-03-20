@@ -8,23 +8,25 @@ import "./main.scss";
 import "./styles.scss";
 
 const Logout = () => {
-  // Function to handle logout
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/login"); // Redirect to login after logout
+    navigate("/login");
   };
 
   return <button className="logout-button" onClick={handleLogout}>Logout</button>;
 };
 
-const App = () => {
+const ProtectedRoute = ({ element }) => {
   const isAuthenticated = localStorage.getItem("token");
+  return isAuthenticated ? element : <Navigate to="/login" />;
+};
 
+const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={isAuthenticated ? <><BoardView /><Logout /></> : <Navigate to="/" />} />
+        <Route path="/" element={<ProtectedRoute element={<><BoardView /><Logout /></>} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
